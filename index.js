@@ -9,7 +9,7 @@ const PORT=8080;
 app.use(express.urlencoded({extended : false}))
 //Custom-middleware examples
 app.use((req,res,next)=>{
-    fs.appendFile("log.txt",`\n${Date.now()}: ${req.method} ${req.path}`,(err,result)=>{
+    fs.appendFile("log.txt",`${Date.now()}: ${req.method} ${req.path}\n`,(err,result)=>{
         console.log("Appended to file.");
         next();
     })
