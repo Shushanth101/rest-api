@@ -7,6 +7,14 @@ const app=express();
 const PORT=8080;
 //Middleware
 app.use(express.urlencoded({extended : false}))
+//Custom-middleware examples
+app.use((req,res,next)=>{
+    fs.appendFile("log.txt",`\n${Date.now()}: ${req.method} ${req.path}`,(err,result)=>{
+        console.log("Appended to file.");
+        next();
+    })
+    
+})
 //routes
 app.get("/users",(req,res)=>{
     const html=`
